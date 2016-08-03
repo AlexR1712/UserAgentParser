@@ -41,10 +41,10 @@ namespace UserAgentParserTest\Unit\Provider
 
         public function testPackageNotLoadedException()
         {
-            $file     = 'vendor/donatj/phpuseragentparser/composer.json';
-            $tempFile = 'vendor/donatj/phpuseragentparser/composer.json.tmp';
+//             $file     = 'vendor/donatj/phpuseragentparser/composer.json';
+//             $tempFile = 'vendor/donatj/phpuseragentparser/composer.json.tmp';
 
-            rename($file, $tempFile);
+//             rename($file, $tempFile);
 
             try {
                 $provider = new DonatjUAParser();
@@ -54,7 +54,7 @@ namespace UserAgentParserTest\Unit\Provider
 
             $this->assertInstanceOf('UserAgentParser\Exception\PackageNotLoadedException', $ex);
 
-            rename($tempFile, $file);
+//             rename($tempFile, $file);
         }
 
         public function testGetName()

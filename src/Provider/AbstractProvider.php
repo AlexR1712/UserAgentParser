@@ -5,6 +5,7 @@ use DateTime;
 use DateTimeZone;
 use UserAgentParser\Exception;
 use UserAgentParser\Model;
+use UserAgentParser\Exception\PackageNotLoadedException;
 
 /**
  * Abstraction for all providers
@@ -221,6 +222,13 @@ abstract class AbstractProvider
     public function getDetectionCapabilities()
     {
         return array_merge($this->allDetectionCapabilities, $this->detectionCapabilities);
+    }
+    
+    protected function isInstalled()
+    {
+        if (!\ComposerLocator::isInstalled($this->getPackageName())) {
+            throw new PackageNotLoadedException('You need to install the package ' . $this->getPackageName() . ' to use this provider');
+        }
     }
 
     /**
